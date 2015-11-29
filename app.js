@@ -6,7 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var step1 = require('./routes/step1');
+var step2 = require('./routes/step2');
+var step3 = require('./routes/step3');
+var step4 = require('./routes/step4');
 
 var app = express();
 
@@ -24,7 +27,10 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/step1', step1);
+app.use('/step2', step2);
+app.use('/step3', step3);
+app.use('/step4', step4);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
