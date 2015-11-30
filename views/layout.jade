@@ -4,13 +4,17 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    ul
-      li
-        a(href="/") Home
+    #guideLinks
+      ul
       li 
-        a(href="/step1") Step 1
-      li
-        a(href="/step2") Step 2
-      li 
-        a(href="/step3") Step 3
-    block content
+        a(href="https://github.com/jensbodal/cs290-howto-reddit-api") Github Code
+        li
+          a(href="/") Home
+        li 
+          a(href="/step1") Step 1
+        li
+          a(href="/step2") Step 2
+        li 
+          a(href="/step3") Step 3
+    #mainBlock
+      block content

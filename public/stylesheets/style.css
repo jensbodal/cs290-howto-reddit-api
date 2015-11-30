@@ -5,3 +5,9 @@ body {
 a {
   color: #00b7ff;
 }
+h1 {
+  color: #f00;
+}
+#mainBlock {
+  background-color: #008000;
+}
