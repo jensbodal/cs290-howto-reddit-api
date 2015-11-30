@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p Hi this is J
-  p FUDIFJIJFIJDFSPOSIJF
-  a(href="/step1") Step 1
+  h1 Using the Reddit API
+  :markdown
+    The [Reddit API](https://www.reddit.com/dev/api) has access to nearly aspect of the website for which a regular user
+    browsing the site via a typical web browser would have access to.
+  
+  #next
+    a(href="/step1") Next

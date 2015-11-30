@@ -5,9 +5,25 @@ body {
 a {
   color: #00b7ff;
 }
-h1 {
-  color: #f00;
+#container {
+  width: 100%;
 }
 #mainBlock {
-  background-color: #008000;
+  float: left;
+  width: 70%;
+}
+#guideLinks {
+  float: right;
+  width: 20%;
+}
+#guideLinks ul {
+  list-style-type: none;
+}
+#prev {
+  float: left;
+  margin-left: 0%;
+}
+#next {
+  float: left;
+  margin-left: 1%;
 }
