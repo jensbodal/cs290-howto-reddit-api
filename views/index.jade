@@ -3,15 +3,13 @@ extends layout
 block content
   h1 Using the Reddit API
   :markdown
-    The [Reddit API](https://www.reddit.com/dev/api) has access to nearly aspect of the website for which a regular user
-    browsing the site via a typical web browser would have access to.
-
-  :markdown
-    ```cpp
-    int main() {
-      return 0;
-    }
-    ```
+    The [Reddit API](https://www.reddit.com/dev/api) has access to nearly every aspect of the website for which a regular user
+    browsing the site via a typical web browser would have access to.  This how-to guide will assume that the user has a basic understanding of what Reddit is and the terminology used for various portions of 
+    its site.
+    
+    Reddit has made it very easy to access the content of its sites through simple GET requests.  JSON data for any non-private URL can be obtained by appending `.JSON` to the end of the URL.
+    For example the URL http://www.reddit.com/r/all lists the top submissions for all subreddits, and http://www.reddit.com/r/all.json is the same information but JSON formatted.  This is great for many 
+    different tasks, however if we want to perform any action in the context of a user, we will need to authenticate ourselves in order to do so.
   
   #next
     a(href="/step1") Next
