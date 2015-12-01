@@ -3,8 +3,10 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/prism.css')
-    script(type='text/javascript', src='/javascripts/prism.js')
+    link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css")
+    script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js")
+    script.
+      hljs.initHighlightingOnLoad();
   body
     #container
       #guideLinks
