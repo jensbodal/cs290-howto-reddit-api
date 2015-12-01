@@ -12,17 +12,6 @@ marked.setOptions({
 });
 
 var routes = require('./routes/index');
-var step1 = require('./routes/step1');
-var step2 = require('./routes/step2');
-var step3 = require('./routes/step3');
-var step4 = require('./routes/step4');
-var step5 = require('./routes/step5');
-var step6 = require('./routes/step6');
-var step7 = require('./routes/step7');
-var step8 = require('./routes/step8');
-var step9 = require('./routes/step9');
-var step10 = require('./routes/step10');
-
 var app = express();
 
 // view engine setup
@@ -39,16 +28,6 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/step1', step1);
-app.use('/step2', step2);
-app.use('/step3', step3);
-app.use('/step4', step4);
-app.use('/step5', step5);
-app.use('/step6', step6);
-app.use('/step7', step7);
-app.use('/step8', step8);
-app.use('/step9', step9);
-app.use('/step10', step10);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

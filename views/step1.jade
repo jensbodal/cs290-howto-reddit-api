@@ -4,18 +4,12 @@ block content
   
   h1 Step 1
   p Here is step 1
-  :markdown
-    ```cpp
-    int main() {
-        return 0;
-    }
-    ```
   
-    ```bash
-    if test -r "${HOME}/.profile"; then
-        #dostuff
-    fi
-    ```
+  div
+    form(method="GET", action="/getAPIkey")
+      p Reddit user name: 
+        input(type="text", name="title", value="HER")
+        input(type="submit", value="add")
 
   #prev
     a(href="/") Previous

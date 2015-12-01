@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Reddit API How-To' });
 });
 
+router.get('/step:number', function(req, res) {
+    res.render('step' + req.params.number);
+});
+
 module.exports = router;
