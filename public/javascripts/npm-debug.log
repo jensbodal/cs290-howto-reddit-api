@@ -1,0 +1,97 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'prism' ]
+2 info using npm@2.11.3
+3 info using node@v0.12.7
+4 verbose node symlink /usr/bin/node
+5 verbose install initial load of /home/ubuntu/cs290-howto-reddit-api/package.json
+6 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/body-parser/package.json
+7 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/cookie-parser/package.json
+8 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/debug/package.json
+9 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/express/package.json
+10 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/jade/package.json
+11 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/morgan/package.json
+12 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/serve-favicon/package.json
+13 verbose installManyTop reading scoped package data from /home/ubuntu/cs290-howto-reddit-api/node_modules/stylus/package.json
+14 info package.json stylus@0.42.3 No license field.
+15 verbose readDependencies loading dependencies from /home/ubuntu/cs290-howto-reddit-api/package.json
+16 silly cache add args [ 'prism', null ]
+17 verbose cache add spec prism
+18 silly cache add parsed spec { raw: 'prism',
+18 silly cache add   scope: null,
+18 silly cache add   name: 'prism',
+18 silly cache add   rawSpec: '',
+18 silly cache add   spec: '*',
+18 silly cache add   type: 'range' }
+19 silly addNamed prism@*
+20 verbose addNamed "*" is a valid semver range for prism
+21 silly addNameRange { name: 'prism', range: '*', hasData: false }
+22 silly mapToRegistry name prism
+23 silly mapToRegistry using default registry
+24 silly mapToRegistry registry https://registry.npmjs.org/
+25 silly mapToRegistry uri https://registry.npmjs.org/prism
+26 verbose addNameRange registry:https://registry.npmjs.org/prism not in flight; fetching
+27 verbose request uri https://registry.npmjs.org/prism
+28 verbose request no auth needed
+29 info attempt registry request try #1 at 22:32:38
+30 verbose request id 7dfb0bae90baa686
+31 http request GET https://registry.npmjs.org/prism
+32 http 404 https://registry.npmjs.org/prism
+33 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+33 verbose headers   etag: '"C8HUFGRJUXLWPXRCZBSBLHQF5"',
+33 verbose headers   'content-type': 'application/json',
+33 verbose headers   'cache-control': 'max-age=0',
+33 verbose headers   'content-length': '437',
+33 verbose headers   'accept-ranges': 'bytes',
+33 verbose headers   date: 'Mon, 30 Nov 2015 22:33:18 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   age: '0',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-sjc3134-SJC',
+33 verbose headers   'x-cache': 'MISS',
+33 verbose headers   'x-cache-hits': '0',
+33 verbose headers   'x-timer': 'S1448922798.511295,VS0,VE88',
+33 verbose headers   vary: 'Accept' }
+34 silly get cb [ 404,
+34 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+34 silly get     etag: '"C8HUFGRJUXLWPXRCZBSBLHQF5"',
+34 silly get     'content-type': 'application/json',
+34 silly get     'cache-control': 'max-age=0',
+34 silly get     'content-length': '437',
+34 silly get     'accept-ranges': 'bytes',
+34 silly get     date: 'Mon, 30 Nov 2015 22:33:18 GMT',
+34 silly get     via: '1.1 varnish',
+34 silly get     age: '0',
+34 silly get     connection: 'keep-alive',
+34 silly get     'x-served-by': 'cache-sjc3134-SJC',
+34 silly get     'x-cache': 'MISS',
+34 silly get     'x-cache-hits': '0',
+34 silly get     'x-timer': 'S1448922798.511295,VS0,VE88',
+34 silly get     vary: 'Accept' } ]
+35 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/prism
+35 verbose stack     at CachingRegistryClient.<anonymous> (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:239:14)
+35 verbose stack     at Request._callback (/usr/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:170:14)
+35 verbose stack     at Request.self.callback (/usr/lib/node_modules/npm/node_modules/request/request.js:354:22)
+35 verbose stack     at Request.emit (events.js:110:17)
+35 verbose stack     at Request.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:1207:14)
+35 verbose stack     at Request.emit (events.js:129:20)
+35 verbose stack     at IncomingMessage.<anonymous> (/usr/lib/node_modules/npm/node_modules/request/request.js:1153:12)
+35 verbose stack     at IncomingMessage.emit (events.js:129:20)
+35 verbose stack     at _stream_readable.js:908:16
+35 verbose stack     at process._tickCallback (node.js:355:11)
+36 verbose statusCode 404
+37 verbose pkgid prism
+38 verbose cwd /home/ubuntu/cs290-howto-reddit-api/public/javascripts
+39 error Linux 3.13.0-61-generic
+40 error argv "/usr/bin/node" "/usr/bin/npm" "install" "prism"
+41 error node v0.12.7
+42 error npm  v2.11.3
+43 error code E404
+44 error 404 Registry returned 404 for GET on https://registry.npmjs.org/prism
+44 error 404
+44 error 404 'prism' is not in the npm registry.
+44 error 404 You should bug the author to publish it (or use the name yourself!)
+44 error 404 It was specified as a dependency of 'cs290-howto-reddit-api'
+44 error 404
+44 error 404 Note that you can also install from a
+44 error 404 tarball, folder, http url, or git url.
+45 verbose exit [ 1, true ]

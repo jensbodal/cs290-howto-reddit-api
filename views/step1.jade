@@ -1,8 +1,30 @@
 extends layout
 
 block content
+  
   h1 Step 1
   p Here is step 1
+  :markdown
+    ```cpp
+    int main() {
+        return 0;
+    }
+    ```
+  
+    ```bash
+    if test -r "${HOME}/.profile"; then
+        #dostuff
+    fi
+    ```
+
+  | <pre class="language-cpp">
+  | <code class="language-* language-cpp">
+  |     int main() { return 0; }
+  | </code>
+  | </pre>
+
+  p  Here is other text
+
   #prev
     a(href="/") Previous
   #next

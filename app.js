@@ -6,6 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var marked = require('marked');
 
+// This option isn't needed right now -- does nothing
+marked.setOptions({
+    gfm: true
+});
+
 var routes = require('./routes/index');
 var step1 = require('./routes/step1');
 var step2 = require('./routes/step2');
