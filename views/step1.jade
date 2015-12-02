@@ -2,28 +2,44 @@
 extends layout
 
 block content
-  
   :markdown
     # Setting up Authentication
 
-    There are three types of authenticating an App, and they are [detailed here](https://github.com/reddit/reddit/wiki/OAuth2-App-Types).
-    For our purposes we are going to create a Web app which can be authenticated as any user, and make requests on their behalf.
+    There are three types of authenticating an App, and they are 
+    [detailed here](https://github.com/reddit/reddit/wiki/OAuth2-App-Types).
+    For our purposes we are going to create a Web app which can be authenticated as any user, 
+    and make requests on their behalf.
 
+    The primary things that we will need are:
+    1. [A Reddit account](https://www.reddit.com/login)
+    2. [An API Key](https://www.reddit.com/prefs/apps)
+    3. [The App ID (or Client ID)](/images/client_id.jpg)
   
-    The following data will be needed in order to make a request for a one-time use code which can then be exchanged for a bearer token. The details of the
-    various pieces of information can be found on the [OAuth2 Authorization](https://github.com/reddit/reddit/wiki/OAuth2#authorization) page.
+    The following data will be needed in order to make a request for a one-time use code which can 
+    then be exchanged for a access token. The details of the various pieces of information can be 
+    found on the [OAuth2 Authorization](https://github.com/reddit/reddit/wiki/OAuth2#authorization) page.
 
-  - var cllient_id = "Uib6t-SVuC7dvw"
-  
+    The format over the GET request to obtain the one-time-use code is:
+
+    ```
+    https://www.reddit.com/api/v1/authorize?client_id=CLIENT_ID&response_type=TYPE&
+    state=RANDOM_STRING&redirect_uri=URI&duration=DURATION&scope=SCOPE_STRING`
+    ```
+
+    An example below will make a request to obtain the one-time-use code, but will require you to log into a 
+    Reddit account in order to do so.  Creating a quick disposable account is easy, simply sign up 
+    [here](https://www.reddit.com/login).
+
+  - var client_id = "Uib6t-SVuC7dvw"
+  - var cjlient_id = "69ICiuiebPZMYA"
+  - var URI = "http://52.88.236.109:3000/one-time-code"
   div
-    form(method="GET", action="https://www.reddit.com/api/v1/authorize?")
-      // form(method="GET", action="/") //
-
+    form(method="GET", action="https://www.reddit.com/api/v1/authorize")
       table
         tr
           td Client ID
           td
-            input(type="text", name="client_id", value="#{cllient_id}")
+            input(type="text", name="client_id", value="#{client_id}")
         tr
           td Response Type
           td
@@ -35,7 +51,7 @@ block content
         tr
           td Redirect URI
           td
-            input(type="text", name="redirect_uri", value="http://52.88.236.109:3000/one-time-code")
+            input(type="text", name="redirect_uri", value="#{URI}")
         tr
           td Duration
           td
@@ -46,14 +62,17 @@ block content
             input(type="text", name="scope", value="identity")
         tr
           td
-            input(type="submit", value="add")
+            input(type="submit", value="GET Code")
+  :markdown
+    After clicking **GET Code** the code box below will fill.  Once this is done, please move to the next step.
+  table
+    tr
+      td code
+      td
+        input(type="text", name="code", value="#{pageData[1]}")
   
-  #one-time-code
-    if pageData
-      p #{pageData[1]}
-    else
-
+  br
   #prev
     a(href="/") Previous
   #next
-    a(href="/step2") Next
+    a(href="/step2?code=#{pageData[1]}") Next

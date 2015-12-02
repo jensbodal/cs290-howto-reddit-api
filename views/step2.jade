@@ -1,6 +1,33 @@
 extends layout
 
 block content
+  p #{code} JSDJF
+  :markdown
+    # Obtaining the Access Token
+    After clicking **GET Code** above and logging into a Reddit account, the page will return here
+    and fill in the one-time-use code.  We will now make another API call to obtain the `access_token`
+    ```
+    https://www.reddit.com/api/v1/access_token
+    ```
+  form(method="POST", action="/authorize_reddit")
+    table
+      tr
+        td grant_type
+        td
+          input(type="text", name="grant_type", value="authorization_code")
+      tr
+        td code
+        td
+          input(type="text", name="code", value="#{pageData[1]}")
+      tr
+        td redirect_uri
+        td
+          input(type="text", name="redirect_uri", value="#{URI}")
+      tr
+        td
+          input(type="hidden", name="client_id", value="#{client_id}")
+          input(type="submit", value="POST")
+
   h1 Step 2
   p Here is step 2
   #prev

@@ -6,13 +6,59 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Reddit API How-To' });
 });
 
+router.post('/authorize_reddit', function(req, res) {
+    var post_url = "https://www.reddit.com/api/v1/access_token";
+    var context = getContext('POST', req, true);
+    var grant_type = context.params[0].value;
+    var code = context.params[1].value;
+    var redirect_uri = context.params[2].value;
+    var client_id = context.params[3].value;
+    var secret = "XHC5nra5YLYGAkMblwjeNZai_YE";
+    var tt = {
+        post_url: post_url,
+        grant_type: grant_type,
+        code: code,
+        redirect_uri: redirect_uri,
+        client_id: client_id,
+        secret: secret
+    }
+
+    var payload = {
+        type: "POST",
+        url: post_url,
+        dataType: "JSON",
+        data: {
+            code: "asdf"        
+        },
+        username: client_id,
+        password: secret,
+        crossDomain: true,
+        beforeSend: function(xhr){
+            console.log("Called before SEND!!");
+            xhr.setRequestHeader(
+                'Authorization', 
+                'Basic ' + btoa(username + ":" + secret)
+            );
+        }
+    }
+    res.send(tt);
+});
+
+router.get('/step2', function(req, res) {
+    var context = getContext('GET', req, false);
+    var oneTimeCode = context.params[0].value;
+    res.render('step2', {pageData: ["", oneTimeCode]});
+});
+
 router.get('/step:number', function(req, res) {
     var stepNumber = req.params.number;
     try {
-        res.render('step' + stepNumber, {title: 'Step #' + stepNumber});
+        res.render('step' + stepNumber, {
+            pageData: ["","","","",""],
+            title: "Step #" + stepNumber});
     }
     catch(err) {
-        res.send("NONONONONON");
+        res.send("Something went wrong :(");
     }
 });
 
