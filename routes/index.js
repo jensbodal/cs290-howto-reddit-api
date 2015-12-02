@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config');
+var request = require('request');
+var querystring = require('querystring'); 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -17,6 +19,17 @@ router.post('/authorize_reddit', function(req, res) {
     var client_id = context.params[3].value;
     var secret = config.reddit.secret;
 
+
+    var payload = {
+        grant_type: grant_type,
+        code: code,
+        redirect_uri: redirect_uri,
+    }
+
+    var payload_data = querystring.stringify(payload);
+    var contentLength = payload_data.length;
+    
+    var username, password, url, auth;
     request({
       method: 'POST',
       uri: post_url,
