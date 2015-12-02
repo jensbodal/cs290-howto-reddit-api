@@ -32,7 +32,7 @@ router.post('/authorize_reddit', function(req, res) {
     
     var username, password, url, auth;
     var auth_res;
-    var jb = request(
+    var not_used = request(
         {
             method: 'POST',
             uri: post_url,
