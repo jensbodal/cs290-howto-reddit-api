@@ -2,7 +2,7 @@
 extends layout
 
 block content
-  :markdown
+  :marked
     # Setting up Authentication
 
     There are three types of authenticating an App, and they are 
@@ -60,7 +60,7 @@ block content
         tr
           td
             input(type="submit", value="GET Code")
-  :markdown
+  :marked
     After clicking **GET Code** the code box below will fill.  Once this is done, please move to the next step.
   table
     tr
@@ -68,7 +68,7 @@ block content
       td
         input(type="text", name="code", value="#{pageData[1]}")
   
-  :markdown
+  :marked
     ### Do not click next unless the code box above has obtained a value from the **GET Code** form
   br
   #prev

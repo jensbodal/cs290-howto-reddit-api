@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config');
 var request = require('request');
+var async = require('async');
 var querystring = require('querystring'); 
 
 /* GET home page. */
@@ -30,23 +31,29 @@ router.post('/authorize_reddit', function(req, res) {
     var contentLength = payload_data.length;
     
     var username, password, url, auth;
-    request({
-      method: 'POST',
-      uri: post_url,
-      body: payload_data,
-      auth: {
-        username: client_id,
-        password: secret
-      }
-    },
-    function(err, res, body) {
-      console.log(res);
-      console.log("Jens Bodal");
-    }
+    var auth_res;
+    var jb = request(
+        {
+            method: 'POST',
+            uri: post_url,
+            body: payload_data,
+            auth: {
+                username: client_id,
+                password: secret
+            }
+        },
+        function (err, res, body) {
+            var access_token = res.body[0];
+            var auth_res = JSON.parse(res.body);
+            var access_token = auth_res.access_token;
+            var token_type = auth_res.token_type;
+            var scope = auth_res.scope;
+            console.log(auth_res);
+        }
     );
-
-    console.log("Test");
-    res.send("Making requests");
+    res.send("Nothing here");
+    
+    
 });
 
 router.get('/step2', function(req, res) {
