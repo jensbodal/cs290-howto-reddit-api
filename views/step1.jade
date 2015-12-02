@@ -30,9 +30,6 @@ block content
     Reddit account in order to do so.  Creating a quick disposable account is easy, simply sign up 
     [here](https://www.reddit.com/login).
 
-  - var client_id = "Uib6t-SVuC7dvw"
-  - var cjlient_id = "69ICiuiebPZMYA"
-  - var URI = "http://52.88.236.109:3000/one-time-code"
   div
     form(method="GET", action="https://www.reddit.com/api/v1/authorize")
       table
@@ -71,6 +68,8 @@ block content
       td
         input(type="text", name="code", value="#{pageData[1]}")
   
+  :markdown
+    ### Do not click next unless the code box above has obtained a value from the **GET Code** form
   br
   #prev
     a(href="/") Previous

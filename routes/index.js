@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var config = require('../config');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Reddit API How-To' });
 });
+
 
 router.post('/authorize_reddit', function(req, res) {
     var post_url = "https://www.reddit.com/api/v1/access_token";
@@ -13,40 +15,35 @@ router.post('/authorize_reddit', function(req, res) {
     var code = context.params[1].value;
     var redirect_uri = context.params[2].value;
     var client_id = context.params[3].value;
-    var secret = "XHC5nra5YLYGAkMblwjeNZai_YE";
-    var tt = {
-        post_url: post_url,
-        grant_type: grant_type,
-        code: code,
-        redirect_uri: redirect_uri,
-        client_id: client_id,
-        secret: secret
-    }
+    var secret = config.reddit.secret;
 
-    var payload = {
-        type: "POST",
-        url: post_url,
-        dataType: "JSON",
-        data: {
-            code: "asdf"        
-        },
+    request({
+      method: 'POST',
+      uri: post_url,
+      body: payload_data,
+      auth: {
         username: client_id,
-        password: secret,
-        crossDomain: true,
-        beforeSend: function(xhr){
-            console.log("Called before SEND!!");
-            xhr.setRequestHeader(
-                'Authorization', 
-                'Basic ' + btoa(username + ":" + secret)
-            );
-        }
+        password: secret
+      }
+    },
+    function(err, res, body) {
+      console.log(res);
+      console.log("Jens Bodal");
     }
-    res.send(tt);
+    );
+
+    console.log("Test");
+    res.send("Making requests");
 });
 
 router.get('/step2', function(req, res) {
     var context = getContext('GET', req, false);
-    var oneTimeCode = context.params[0].value;
+    if (context.params.length > 0) {
+        var oneTimeCode = context.params[0].value;
+    }
+    else {
+        var oneTimeCode = "";
+    }
     res.render('step2', {pageData: ["", oneTimeCode]});
 });
 

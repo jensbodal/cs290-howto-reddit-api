@@ -1,14 +1,27 @@
 extends layout
 
 block content
-  p #{code} JSDJF
   :markdown
     # Obtaining the Access Token
-    After clicking **GET Code** above and logging into a Reddit account, the page will return here
-    and fill in the one-time-use code.  We will now make another API call to obtain the `access_token`
+    After obtaining the `one-time-code` from the previous page it should pass as a URL parameter
+    and fill in the form below.  The access token  we will obtain here is good for one hour, so if
+    it is obtained previously then you try to use it again, it won't work if the time has elapsed.
+
+    There is a method for refreshing the token without going through all the authentication steps 
+    before, however that will not be covered in this guide.
+
+
+    We will now make another API call to obtain the `access_token`, the request will be made to 
+    the following URL:
     ```
     https://www.reddit.com/api/v1/access_token
     ```
+
+    The following information is going to be sent as a POST request to the above URL, however I will 
+    be handling the submission server side.  The following information will submit to a page here,
+    where it will be processed on Reddit's servers to obtain the `access_token`, and then redirect 
+    back here.
+
   form(method="POST", action="/authorize_reddit")
     table
       tr
@@ -27,9 +40,7 @@ block content
         td
           input(type="hidden", name="client_id", value="#{client_id}")
           input(type="submit", value="POST")
-
-  h1 Step 2
-  p Here is step 2
+  br
   #prev
     a(href="/step1") Previous
   #next

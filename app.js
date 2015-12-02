@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var marked = require('marked');
+var config = require('./config');
 
 // This option isn't needed right now -- does nothing
 marked.setOptions({
