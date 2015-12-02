@@ -20,26 +20,43 @@ block content
     The following information is going to be sent as a POST request to the above URL, however I will 
     be handling the submission server side.  The following information will submit to a page here,
     where it will be processed on Reddit's servers to obtain the `access_token`, and then redirect 
-    back here.
+    back here and populate the `access_token` field.
 
   form(method="POST", action="/authorize_reddit")
     table
       tr
         td grant_type
         td
-          input(type="text", name="grant_type", value="authorization_code")
+          input.entry(type="text", name="grant_type", value="authorization_code")
       tr
         td code
         td
-          input(type="text", name="code", value="#{pageData[1]}")
+          input.entry(type="text", name="code", value="#{pageData[1]}")
       tr
         td redirect_uri
         td
-          input(type="text", name="redirect_uri", value="#{URI}")
+          input.entry(type="text", name="redirect_uri", value="#{URI}")
       tr
         td
-          input(type="hidden", name="client_id", value="#{client_id}")
-          input(type="submit", value="POST")
+          input.entry(type="hidden", name="client_id", value="#{client_id}")
+          input.button(type="submit", value="POST")
+
+  :marked
+    After clicking **POST** the access token will fill the box below.  Once this is done you
+    can move on to the next step and make actual API calls as an authenticated user.
+
+  table
+    td
+      td access_token
+      td
+        input.entry(type="text", name="code", value="#{pageData[0]}")
+
+  :marked
+    We can now make API requests!  Authenticated requests must be made to the following URL:
+    ```html
+    https://oauth.reddit.com
+    ```
+    Once you have your `access_token`, click next to continue.
   br
   #prev
     a(href="/step1") Previous

@@ -36,37 +36,37 @@ block content
         tr
           td Client ID
           td
-            input(type="text", name="client_id", value="#{client_id}")
+            input.entry(type="text", name="client_id", value="#{client_id}")
         tr
           td Response Type
           td
-            input(type="text", name="response_type", value="code")
+            input.entry(type="text", name="response_type", value="code")
         tr
           td State
           td
-            input(type="text", name="state", value="this_is_random_string")
+            input.entry(type="text", name="state", value="this_is_random_string")
         tr
           td Redirect URI
           td
-            input(type="text", name="redirect_uri", value="#{URI}")
+            input.entry(type="text", name="redirect_uri", value="#{URI}")
         tr
           td Duration
           td
-            input(type="text", name="duration", value="temporary")
+            input.entry(type="text", name="duration", value="temporary")
         tr
           td Scope
           td
-            input(type="text", name="scope", value="identity")
+            input.entry(type="text", name="scope", value="identity")
         tr
           td
-            input(type="submit", value="GET Code")
+            input.button(type="submit", value="GET Code")
   :marked
     After clicking **GET Code** the code box below will fill.  Once this is done, please move to the next step.
   table
     tr
       td code
       td
-        input(type="text", name="code", value="#{pageData[1]}")
+        input.entry(type="text", name="code", value="#{pageData[1]}")
   
   :marked
     ### Do not click next unless the code box above has obtained a value from the **GET Code** form

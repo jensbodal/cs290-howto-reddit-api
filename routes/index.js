@@ -31,8 +31,8 @@ router.post('/authorize_reddit', function(req, res) {
     var contentLength = payload_data.length;
     
     var username, password, url, auth;
-    var testing;
-    var not_used = request(
+    
+    request(
         {
             method: 'POST',
             uri: post_url,
@@ -47,10 +47,10 @@ router.post('/authorize_reddit', function(req, res) {
             var access_token = auth_res.access_token;
             var token_type = auth_res.token_type;
             var scope = auth_res.scope;
-            res.send(auth_res);
+            console.log(access_token);
+            res.render('step2', {pageData: [access_token, code, token_type, scope]});
         }
     );
-    
 });
 
 router.get('/step2', function(req, res) {

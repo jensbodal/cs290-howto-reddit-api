@@ -19,11 +19,29 @@ a {
 #guideLinks ul {
   list-style-type: none;
 }
+#prev a,
+#next a {
+  text-decoration: none !important;
+  font-weight: bold;
+  background-color: #eee;
+  color: #333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-left: 1px solid #ccc;
+}
 #prev {
+  text-transform: uppercase;
   float: left;
   margin-left: 0%;
+  text-decoration: none;
 }
 #next {
+  text-transform: uppercase;
   float: left;
   margin-left: 1%;
+}
+input.entry {
+  width: 300px;
 }
