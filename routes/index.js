@@ -53,6 +53,11 @@ router.post('/authorize_reddit', function(req, res) {
     );
 });
 
+router.post('/reddit_api', function(req, res) {
+    var context = getContext('POST', req, true);
+    res.send(context);
+});
+
 router.get('/step2', function(req, res) {
     var context = getContext('GET', req, false);
     if (context.params.length > 0) {
@@ -62,6 +67,17 @@ router.get('/step2', function(req, res) {
         var oneTimeCode = "";
     }
     res.render('step2', {pageData: ["", oneTimeCode]});
+});
+
+router.get('/step3', function(req, res) {
+    var context = getContext('GET', req, false);
+    if (context.params.length > 0) {
+        var access_token = context.params[0].value;
+    }
+    else {
+        var access_token = "";
+    }
+    res.render('step3', {pageData: [access_token]});
 });
 
 router.get('/step:number', function(req, res) {

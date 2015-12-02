@@ -1,8 +1,40 @@
 extends layout
 
 block content
-  h1 Step 3
-  p Here is step 3
+  - var access_token = pageData[0]
+  
+  :marked
+    # Making API Requests
+    You now have an access token to make API request assuming you've stuck with me this far.
+    The access token field below will be empty if not :(
+
+    Your `access_token` is:
+    ```html
+    #{access_token}
+    ```
+    Request must be made to the following URL:
+    ```bash
+    https://oauth.reddit.com/api/v1
+    ```
+    
+    The only requirement for further calls is that the header makes a basic HTTP
+    authentication call with the bearer `access_token`
+    ```html
+    Header:
+    Authorization : 'bearer [access_token from Step 5 response]'
+    ```
+
+  form(method="POST", action="/reddit_api")
+    table
+      tr
+        td access_token
+        td
+          input.entry(type="text", name="access_token", value="#{access_token}")
+      tr
+        td
+          input.button(type="submit", value="POST")
+
+  br
   #prev
     a(href="/step2") Previous
   #next
