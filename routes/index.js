@@ -4,6 +4,7 @@ var config = require('../config');
 var request = require('request');
 var async = require('async');
 var querystring = require('querystring'); 
+var https = require('https');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -55,7 +56,24 @@ router.post('/authorize_reddit', function(req, res) {
 
 router.post('/reddit_api', function(req, res) {
     var context = getContext('POST', req, true);
-    res.send(context);
+    var access_token = context.params[0].value;
+    var post_uri = "https://oath.reddit.com/api/v1/me";
+    var state = "this_is_random_string";
+    
+    request({
+        uri: post_uri,
+        crossDomain: true,
+        headers: {
+            "Authorization" : "bearer " + new Buffer(access_token, "utf8").toString("base64"),
+            "User-Agent" : "cs290-howto-reddit-api/0.1 by osu-test" 
+        }
+
+    }, function (err, inner_res, body) {
+        var info = JSON.parse(body);
+        console.log(inner_res);
+        res.send(inner_res);
+    });
+
 });
 
 router.get('/step2', function(req, res) {
