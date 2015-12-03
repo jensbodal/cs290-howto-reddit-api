@@ -38,6 +38,9 @@ router.post('/authorize_reddit', function(req, res) {
             method: 'POST',
             uri: post_url,
             body: payload_data,
+            headers: {
+                "User-Agent" : "cs290-howto-reddit-api/0.1 by osu-test"
+            },
             auth: {
                 username: client_id,
                 password: secret
@@ -65,7 +68,8 @@ router.post('/reddit_api', function(req, res) {
         crossDomain: true,
         headers: {
             "Authorization" : "bearer " + new Buffer(access_token, "utf8").toString("base64"),
-            "User-Agent" : "cs290-howto-reddit-api/0.1 by osu-test" 
+            "User-Agent" : "cs290-howto-reddit-api/0.1 by osu-test",
+            "Content-Type" : "application/x-www-form-urlencoded"
         }
 
     }, function (err, inner_res, body) {
