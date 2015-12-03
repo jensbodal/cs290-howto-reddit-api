@@ -32,7 +32,7 @@ block content
           input.entry(type="text", name="access_token", value="#{access_token}")
       tr
         td
-          input.button(type="submit", value="POST")
+          input.button(type="submit", value="Sample API Call")
 
   br
 
@@ -46,6 +46,54 @@ block content
     * `/api/v1/me/prefs`
     * `/api/v1/me/trophies`
 
+    ---
+
+    Here is an example of the failing `nodejs request`.  Once I received a correct JSON object back
+    I would have sent it in a similiar fashion back to another page.  You can see the failed output 
+    by clicking the **Sample API Call** button above (assuming you have obtained an `access_token`.
+    ```javascript
+    request({
+        uri: post_uri,
+        crossDomain: true,
+        headers: {
+            "Authorization" : "bearer " + new Buffer(access_token, "utf8").toString("base64"),
+            "User-Agent" : "cs290-howto-reddit-api/0.1 by osu-test" 
+        }
+
+    }, function (err, inner_res, body) {
+        var info = JSON.parse(body);
+        console.log(inner_res);
+        res.send(inner_res);
+    });
+    ```
+    
+    And here is an example of what I believe to be the same information, but submitted via `cURL`:
+    
+    ```bash
+    curl -H "Authorization: bearer #{access_token}" -A "cs290-howto-reddit-api/0.1 by osu-test" https://oauth.reddit.com/api/v1/me           
+    ```
+
+    The response received would be an example of a sucessful API call, but I spent all of my time
+    trying to get this to work server side and could not figure it out.
+
+    ```text
+    {"name": "osu-test", 
+    "created": 1448710556.0, 
+    "hide_from_robots": false, 
+    "is_suspended": false, 
+    "created_utc": 1448681756.0, 
+    "link_karma": 1, 
+    "comment_karma": 0, 
+    "over_18": false, 
+    "is_gold": false, 
+    "is_mod": false, 
+    "id": "sgtdf", 
+    "gold_expiration": null, 
+    "inbox_count": 0, 
+    "has_verified_email": false, 
+    "gold_creddits": 0, 
+    "suspension_expiration_utc": null}    
+    ```
     
 
   br
