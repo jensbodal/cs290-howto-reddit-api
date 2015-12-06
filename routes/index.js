@@ -5,6 +5,7 @@ var request = require('request');
 var async = require('async');
 var querystring = require('querystring'); 
 var https = require('https');
+var $ = require('jquery');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,7 +33,7 @@ router.post('/authorize_reddit', function(req, res) {
     var contentLength = payload_data.length;
     
     var username, password, url, auth;
-    
+
     request(
         {
             method: 'POST',
@@ -63,6 +64,32 @@ router.post('/reddit_api', function(req, res) {
     var post_uri = "https://oath.reddit.com/api/v1/me";
     var state = "this_is_random_string";
     
+    if(typeof $ == 'undefined') {
+        console.log("Not working");
+    }
+
+    else {
+        console.log("Working");
+    }
+
+    $.ajax({
+        type: 'GET',
+        url: post_uri,
+        dataType: 'jsonp',
+        headers: {
+            "Authorization" : "bearer " + new Buffer(access_token, "utf8").toString("base64"),
+            "User-Agent" : "cs290-howto-reddit-api/0.1 by osu-test",
+            "Content-Type" : "application/x-www-form-urlencoded"
+        },
+        jsonpCallback: 'thecall',
+        success: function(msg) {
+
+        },
+        error: function(msg) {
+
+        }
+    });
+/*    
     request({
         uri: post_uri,
         crossDomain: true,
@@ -77,8 +104,13 @@ router.post('/reddit_api', function(req, res) {
         console.log(inner_res);
         res.send(inner_res);
     });
+*/
 
 });
+
+function thecall(msg) {
+    console.log("We are trigging");
+}
 
 router.get('/step2', function(req, res) {
     var context = getContext('GET', req, false);
